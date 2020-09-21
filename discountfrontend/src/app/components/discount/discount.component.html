@@ -1,0 +1,192 @@
+<!--"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",-->
+<!--
+<div fxLayoutAlign="center center ">
+    <h1 class="mat-display" style="color:rgb(19, 18, 18)">New Discount Coupon</h1>
+    </div>
+-->
+<div class="container alternative">
+   
+<div fxLayoutAlign="center center " fxFlexFill class="alternative register-discount" >
+       
+        <form  [formGroup]="discountForm" (ngSubmit)="onSubmit() " fxLayoutAlign="stretch" fxLayout="column" fxFlex="60">
+          
+           <a routerLink="/getcoupons"> <p class="mat-body-strong"> <-Discount Coupon</p></a>
+            <h1 class="mat-display" style="color:rgb(19, 18, 18)">New Discount Coupon</h1>
+            <mat-card fxFlex="25">
+                <div class="container">
+                <p class="mat-body-strong">Discount Coupon</p>
+                <div (click)="Link()" style="text-align:right;margin-top:-35px;color:coral;font-size:12px;">
+                    Generate a random code
+                </div>
+             <!--  <div style="text-align:right;margin-top:-35px;">
+                  <a (click)="Link()" style="color:coral;font-size:12px;">Generate a random code</a>
+                </div> -->
+                </div>
+                <p></p>
+                <div class="form-group">
+                    <input type="text" class="form-control form-rounded" id="discount1" value=""  placeholder="Example:AHHFI893j" formControlName="dcode" required >                 
+                </div>
+                <p>This Discount Coupon will have to be applied during booking to avail discounts</p>
+
+            </mat-card>
+            <p></p>
+            <mat-card fxFlex="25">
+                <div class="container">
+                <p class="mat-body-strong">Discount Type</p>
+                 
+                <div class="col-sm-10">
+                    <!--name="offer" [(ngModel)]="model.offer"-->
+
+                    <input type="radio" id="radid"  value="Percentage"  name="offer" [(ngModel)]="model.offer" [ngModelOptions]="{standalone: true}" > Percentage                         
+                    <input type="radio"  id="radid" value="Fixedamount" name="offer" [(ngModel)]="model.offer" [ngModelOptions]="{standalone: true}"> Fixed Amount
+                    
+                </div>      
+            </div> 
+
+            </mat-card>
+            <p></p>
+            <mat-card fxFlex="25">
+                <div class="container form-group">
+                <p class="mat-body-strong">Discount Value</p>
+               <div *ngIf="this.model.offer=='Percentage'">
+                <input type="text" class="form-control form-rounded" value="" style="width:200px;"  formControlName="dpervalue" placeholder="                                     %" >                    
+                   
+               </div>
+               <div *ngIf="this.model.offer!='Percentage'">
+                <input type="text" class="form-control form-rounded" value="" style="width:200px;" placeholder="INR&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" formControlName="dinrvalue">                 
+                  
+               </div> 
+               <hr/>
+                <p class="mat-body-strong">Applies to</p>
+                <div class="col-sm-10">
+
+                    <input type="radio" id="radid" value="entireorder"> Entire Order                         
+                    <input type="radio" id="radid" value="specificorder"> Specific Order
+                    
+                </div>
+                    
+            </div> 
+
+            </mat-card>
+            <p></p>
+            <mat-card fxFlex="25">
+                <div class="container">
+                 <p class="mat-body-strong">Minimum Requirements</p>
+                <div class="col-sm-10">
+
+                    <input type="radio" id="radid" value="notavalue" name="minreq" [(ngModel)]="model.minreq" [ngModelOptions]="{standalone: true}"> None                  
+                    <input type="radio" id="radid" value="Minimum" name="minreq" [(ngModel)]="model.minreq" [ngModelOptions]="{standalone: true}"> Minimum order Requirement 
+                    
+                </div>
+                <div *ngIf="this.model.minreq=='Minimum'">
+                    <input type="text" class="form-control form-rounded" value="" style="width:200px;"  formControlName="dminreqvalue" placeholder="INR" >                    
+                 
+                   </div>
+                   <div *ngIf="this.model.minreq!='Minimum'">
+                    
+                   </div>
+            </div> 
+
+            </mat-card>
+            <p></p>
+            <mat-card fxFlex="25">
+                <div class="container">
+                 <p class="mat-body-strong">User Eligibility</p>
+                <div class="col-sm-10">
+
+                    <input type="radio" id="radid" value="everyone"> Everyone                
+                    <input type="radio" id="radid" value="specificusers"> Specific Users 
+                    
+                </div>
+                    
+            </div> 
+
+            </mat-card>
+            <p></p>
+            <mat-card fxFlex="25">
+                <div class="container form-group">
+                 <p class="mat-body-strong">Active Dates</p>
+                 <div class="col-5">
+                     <mat-form-field class="float-left">
+                        <mat-label>Start Date</mat-label>
+                         <input matInput [matDatepicker]="pickers" formControlName="startdate">
+                         <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                         <mat-datepicker #pickers></mat-datepicker>
+
+                     </mat-form-field>
+
+                 </div>
+                <!-- <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Start Date</mat-label>
+                        <input class="form-control" matInput [matDatepicker]="basicDatepicker" >
+                        <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #basicDatepicker></mat-datepicker>
+                        
+                      </mat-form-field>
+                     
+                   
+                  </div>-->
+                  <br/>
+                <div class="col-sm-10 float-left">
+                    <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group float-left "
+                    [(ngModel)]="this.model.favoriteSeason" [ngModelOptions]="{standalone: true}">
+                    <mat-radio-button class="example-radio-button float-left" *ngFor="let season of this.model.seasons" [value]="season" >
+                    {{season}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                                        
+                </div>
+                
+               <!-- <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>End Date</mat-label>
+                        <input class="form-control" matInput [matDatepicker]="basicDatepicker1" formControlName="enddate">
+                        <mat-datepicker-toggle [for]="basicDatepicker1"></mat-datepicker-toggle>
+                        <mat-datepicker #basicDatepicker1></mat-datepicker>
+                        
+                      </mat-form-field>                 
+
+                 </div>-->
+                 <div class="col-5">
+                    <mat-form-field class="float-left">
+                       <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="picker1"formControlName="enddate">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+
+                    </mat-form-field>
+
+                </div>
+                    
+            </div> 
+
+            </mat-card>
+            <p></p>
+            <p></p>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="container" style="text-align:right">
+                <button mat-stroked-button  >Cancel</button>
+                <button mat-raised-button color="primary" type="submit">Save</button>
+                <!--style="width:180px;height:45px;"-->
+
+            </div>
+            <br/>
+            <br/>
+        </form>
+    
+
+</div>
+</div>
+<!--<div class="success" *ngIf="showSucessMessage">
+    Saved successfully
+  </div>
+<div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>-->

@@ -1,0 +1,89 @@
+<div class="container alternative" fxLayoutAlign="stretch" fxLayout="column" fxFlex="70"> 
+    <!-- No data message -->
+    <h1 class="mat-h1">Discount Coupon</h1>
+  <a routerLink="">  <p class="mat-h2">Add a new discount coupon</p></a>
+    <div style="float:right;margin-top:-50px;">
+    <button mat-flat-button  style="float:right;color:white;border:none;width:175px;background-color: #ef6c00;border-radius:6%">Create Discount</button>
+   </div> 
+   <p></p>
+    <p *ngIf="Discount.length <= 0" class="no-data text-center">There are no discounts yet!</p>
+  
+    <!-- discount list -->
+    <mat-card class="example-card" fxLayout="column" fxFlex="60">
+        <input class="form-control " type="text" placeholder="Search Discount Coupon" aria-label="Search"
+        mdbInput style="width:400px;border-radius:5%">
+        <br/>
+     <div class="table-responsive">   
+    <table class="table table-bordered" *ngIf="Discount.length > 0 ">
+        <tbody *ngFor="let discount of Discount; let i = index" style="background-color:#d7bbf5;">
+            <tr *ngIf="discount.active===true && discount.dpervalue!=null && discount.dminreqvalue!=null">
+          <td><b>{{discount.dcode | uppercase}}</b><br/><br/>{{discount.dpervalue}}% off  
+            <ul>  
+                <li style="margin-top:-20px; margin-left:65px;">Minimum Purchase INR {{discount.dminreqvalue}}</li>
+                <li style="margin-top:-20px; margin-left:280px;">Applies to 4 products</li>
+            </ul>
+            <p style="margin-left:480px;margin-top:-55px;">17/100 Used</p>
+            <p style="margin-left:600px;margin-top: -35px;"><b>Active</b></p>
+            <p style="margin-left:680px;margin-top:-35px;">Active from {{discount.startdate | date:" d MMM y "}} <br/> to {{discount.enddate | date:" d MMM y "}}</p>
+        </td>
+
+      
+        <!--  <td>{{discount.dcode}}</td>
+          <td>{{discount.dpervalue}}</td>
+          <td>
+            {{discount.startdate}}
+          </td>
+          <td>{{discount.enddate}}</td>
+          <td>{{discount.active}}</td>
+          <td class="text-center edit-block"> -->
+            <!--            <span class="edit" [routerLink]="['/edit-discount/', discount._id]">
+                          <button type="button" class="btn btn-success btn-sm">Edit</button>
+                        </span>   -->
+                        
+                       <!-- <span class="delete" (click)="removeDiscount(discount, i)">
+                          <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        </span>
+                      </td>
+                    -->
+        </tr>     
+        <tr *ngIf="discount.active===true && discount.dpervalue!=null && discount.dminreqvalue==null">
+            <td><b>{{discount.dcode | uppercase}}</b><br/><br/>{{discount.dpervalue}}% off  
+              <ul>  
+                  <li style="margin-top:-20px; margin-left:65px;">No Minimum Purchase {{discount.dminreqvalue}}</li>
+                  <li style="margin-top:-20px; margin-left:280px;">Applies to 4 products</li>
+              </ul>
+              <p style="margin-left:480px;margin-top:-55px;">17/100 Used</p>
+              <p style="margin-left:600px;margin-top: -35px;"><b>Active</b></p>
+              <p style="margin-left:680px;margin-top:-35px;">Active from {{discount.startdate | date:" d MMM y "}} <br/> to {{discount.enddate | date:" d MMM y "}}</p>
+          </td>
+        </tr>  
+        <tr *ngIf="discount.active===true && discount.dinrvalue!=null && discount.dminreqvalue==null">
+            <td><b>{{discount.dcode | uppercase}}</b><br/><br/>INR {{discount.dinrvalue}} off  
+              <ul >  
+                  <li style="margin-top:-20px; margin-left:65px;"> No Minimum Purchase </li>
+                  <li style="margin-top:-20px; margin-left:280px;">Applies to 4 products</li>
+              </ul>
+              <p style="margin-left:480px;margin-top:-55px;">17/100 Used</p>
+              <p style="margin-left:600px;margin-top: -35px;"><b>Active</b></p>
+              <p style="margin-left:680px;margin-top:-35px;">Active from {{discount.startdate | date:" d MMM y "}} <br/> to {{discount.enddate | date:" d MMM y "}}</p>
+          </td>         
+          <tr *ngIf="discount.active===true && discount.dinrvalue!=null && discount.dminreqvalue!=null">
+            <td><b>{{discount.dcode | uppercase}}</b><br/><br/>INR {{discount.dinrvalue}} off  
+              <ul >  
+                  <li style="margin-top:-20px; margin-left:65px;"> Minimum Purchase INR {{discount.dminreqvalue}}</li>
+                  <li style="margin-top:-20px; margin-left:280px;">Applies to 4 products</li>
+              </ul>
+              <p style="margin-left:480px;margin-top:-55px;">17/100 Used</p>
+              <p style="margin-left:600px;margin-top: -35px;"><b>Active</b></p>
+              <p style="margin-left:680px;margin-top:-35px;">Active from {{discount.startdate | date:" d MMM y "}} <br/> to {{discount.enddate | date:" d MMM y "}}</p>
+          </td>         
+          
+         
+    </tbody>
+    
+    </table>
+    </div>
+    <br/>
+
+    </mat-card>
+  </div>
